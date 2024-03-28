@@ -1,0 +1,63 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root{
+  --primary-color:#000;
+  --secondary-color-2:#DB4444;
+  
+}
+.errors{
+  color: var(--secondary-color-2);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.formContainer{
+  padding: 0 20px;
+  
+  background-image: url('/public/authImg.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 80vh;
+  width: 100%;
+}
+.formContainer form{
+
+  border-radius: 12px;
+  padding: 30px 10px;
+  backdrop-filter: blur(10px);
+  background-color: #0f74595b;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+.formContainer form label{
+  font-weight: 500;
+  font-size: 20px;
+}
+.formContainer form input{
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
+  outline: none;
+  background-color: transparent;
+  
+}
+.formContainer form input:focus{
+  background-color: transparent;
+}
+.formContainer form input[type="submit"]{
+  color: var(--secondary-color-2) ;
+  font-weight: 500;
+  border:2px solid var(--secondary-color-2) ;
+  padding: 6px 12px;
+  border-radius: 12px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.formContainer form input[type="submit"]:hover{
+  background-color: var(--secondary-color-2);
+  color: white;
+}

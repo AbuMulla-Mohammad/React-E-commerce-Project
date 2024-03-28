@@ -1,0 +1,36 @@
+nav{
+
+}
+nav .NavLink{
+    transition: 0.5s all;
+    border-radius: 6px;
+    text-transform: capitalize !important;
+    font-weight: 500;
+}
+nav .NavLink:hover,
+nav .auth .authNavLink:hover,
+.active{
+    padding: 6px 12px !important;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+nav .auth .authNavLink{
+    transition: all 0.5s;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+.logOutBtn{
+    transition: all 0.5s;
+    border: 2px solid var(--secondary-color-2);
+    background-color: white;
+    border-radius: 6px;
+    padding: 6px 12px;
+    transition: all 0.5s;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.logOutBtn:hover{
+    background-color: var(--secondary-color-2);
+    color: white;
+}
