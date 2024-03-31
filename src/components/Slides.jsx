@@ -17,9 +17,9 @@ export default function Slides() {
         autoplay={{ delay: 3000 }}
         className="mySwiper swiper"
       >
-        <SwiperSlide className='swiperSlide'><img src="/public/banners/banner.png" alt="" /></SwiperSlide>
-        <SwiperSlide className='swiperSlide'><img src="/public/banners/banner-1.jpg" alt="" /></SwiperSlide>
-        <SwiperSlide className='swiperSlide'><img src="/public/banners/banner-2.jpg" alt="" /></SwiperSlide>
+        <SwiperSlide className='swiperSlide'><img src="./banners/banner.png" alt="" /></SwiperSlide>
+        <SwiperSlide className='swiperSlide'><img src="./banners/banner-1.jpg" alt="" /></SwiperSlide>
+        <SwiperSlide className='swiperSlide'><img src="./banners/banner-2.jpg" alt="" /></SwiperSlide>
 
       </Swiper>
   </>
