@@ -1,0 +1,111 @@
+.productDetails{
+
+}
+.productDetails .topSide{
+
+}
+.productDetails .topSide .images{
+    height: 600px;
+    
+}
+.productDetails .topSide .images .mainImage img{
+    object-fit: cover;
+}
+.productDetails .topSide .subImages img{
+    height: 138px;
+    width: 170px;
+    object-fit: contain;
+}
+.productDetails .details button{
+    padding: 10px 48px;
+    color: white;
+    background-color: var(--secondary-color-2);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    transition: all 0.5s;
+}
+.productDetails .details button:hover{
+    background-color: var(--secondary-color-3);
+}
+@media (min-width: 300px ) and (max-width:576px){
+    .productDetails .topSide{
+        display: flex;
+        flex-direction: column !important;
+    }
+    .productDetails .topSide .images{
+        width: 100%;
+        height: fit-content !important;
+        
+    }
+    .productDetails .topSide .subImages{
+        display: none !important;
+    }
+    .productDetails .details{
+        text-align: center;
+    }
+}
+@media (max-width: 577px) {
+    .productDetails .topSide .images{
+        height: fit-content !important;
+        
+    }
+    .productDetails .topSide .subImages{
+        display: none !important;
+    }
+    .productDetails .details{
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 769px) { 
+    .productDetails .topSide .images{
+        height: fit-content !important;
+        
+    }
+    .productDetails .topSide .subImages{
+        display: none !important;
+    }
+    .productDetails .details{
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 993px) {
+    .productDetails .topSide .images{
+        height: fit-content !important;
+        
+    }
+    .productDetails .topSide .subImages{
+        display: none !important;
+    }
+    .productDetails .details{
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 1201px) {
+
+
+    
+}
+
+
+@media (max-width: 1401px) { 
+
+}
+.starContainer {
+    width: 25px;
+    height: 25px;
+}
+.starContainer svg{
+    width: 100%;
+}
+.productDetails .details .reviews form input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}

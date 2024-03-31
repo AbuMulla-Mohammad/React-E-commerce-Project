@@ -1,0 +1,13 @@
+.categories{
+}
+.categories .mySwiper{
+    height: fit-content;
+    padding: 20px;
+}
+.categories .category {
+    height: auto !important;
+}
+.categories .category img{
+    width:  150px;
+    height: 250px;
+}

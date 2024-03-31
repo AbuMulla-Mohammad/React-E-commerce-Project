@@ -1,0 +1,9 @@
+footer{
+    padding: 120px 0 80px;
+    background-color: var(--primary-color);
+    color: white;
+}
+footer .Link{
+    color: white;
+    text-decoration: none;
+}

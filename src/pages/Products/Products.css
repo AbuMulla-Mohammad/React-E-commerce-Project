@@ -1,0 +1,30 @@
+.productsSection{
+
+}
+.productsSection .productsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px 0;
+    row-gap: 80px !important;
+}
+.productsSection .productsContainer .product{
+    box-shadow: 0px 0px 30px -8px rgba(0,0,0,0.82);
+    border-radius: 12px;
+    transition: all 0.5s;
+}
+
+.productsSection .productsContainer .product img{
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    transition: all 0.5s;
+}
+.productsSection .productsContainer .product:hover img{
+    transform: rotateY(30deg) scale(125%);
+}
+.productsSection .activePage{
+    transition: all 0.5s;
+    background-color:var( --secondary-color-2);
+    color: white;
+}

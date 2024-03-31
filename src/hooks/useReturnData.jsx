@@ -6,12 +6,10 @@ export default function useReturnData(url) {
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
-    const getData = async (controller) => {
+    const getData = async () => {
         try {
             setIsLoading(true);
-            const { data } = await axios.get(`https://ecommerce-node4.vercel.app${url}`, {
-                signal:controller.signal,
-            });
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}${url}`);
             setData(data);
             setErrors(null);
             
@@ -22,11 +20,11 @@ export default function useReturnData(url) {
         }
     }
     useEffect(() => {
-        const controller = new AbortController();
-            getData(controller);
-            return () => {
-                controller.abort();
-            }
+        // const controller = new AbortController();
+            getData();
+            // return () => {
+            //     controller.abort();
+            // }
         },[url])
     return { data,errors,isLoading };
 }

@@ -5,6 +5,8 @@ import PrintErrors from '../../components/PrintErrors';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
+import { Bounce, Slide, toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 export default function SendCode() {
     // const emailSchema = object({
     //     email: string().email().required(),
@@ -33,7 +35,33 @@ export default function SendCode() {
                 navigate('/forgotPassword');
                 
             } catch (error) {
-                console.log(error)
+                if(error.message=="Network Error") {
+                    alert("server error , Please try again later");
+                    toast.error("server error , Please try again later", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
+                }else if (error.response.data.message!=undefined) {
+                    alert(error.response.data.message);
+                    toast.error(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
+                }
             } finally {
                 setIsLoading(false);
             }
@@ -73,14 +101,17 @@ export default function SendCode() {
     }
     return (
         <>
-            <div className="formContainer d-flex justify-content-end align-items-center">
-                <form action="" onSubmit={handleSubmit} className='d-flex col-xl-6 col-lg-6 col-md-12 col-sm-12 '>
+            <div className="formContainer container">
+                
+                <form action="" onSubmit={handleSubmit} className=' col-xl-6 col-lg-6 col-md-12 col-sm-12 '>
+                        <h2>Type your email below </h2>
                         <label htmlFor="Email">Email</label>
-                        <input type="email" name="email" id="Email" value={email.email} onChange={handleChange} onBlur={validateData}/>
+                        <input type="email" name="email" id="Email" placeholder='Email' value={email.email} onChange={handleChange} onBlur={validateData}/>
                         <PrintErrors errors={validationErrors.email}/>
                         <input type="submit" value="Send code" disabled={isLoading}/>
                 </form>
             </div>
+            <ToastContainer/>
     </>
     )
 }

@@ -24,15 +24,19 @@ import Orders from './pages/Profile/Orders.jsx';
 import UserInfo from './pages/Profile/UserInfo.jsx';
 import ProtectedRoutes from './auth/ProtectedRoutes.jsx';
 import PublicRoutes from './auth/PublicRoutes.jsx';
+import Notfound from './pages/NotFound/Notfound.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <CartContextProvider>
+      <Root />
+      </CartContextProvider>,
     children:[
       {
         path: '/',
-        element:<Home />,
+        element: 
+          <Home />,
       },
       {
         path: '/signup',
@@ -49,11 +53,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/sendcode',
-        element:<SendCode />,
+        element:<PublicRoutes>
+          <SendCode />
+          </PublicRoutes>,
       },
       {
         path: '/forgotPassword',
-        element:<ForgotPassword/>
+        element:<PublicRoutes>
+        <ForgotPassword />
+        </PublicRoutes>,
       },
       {
         path: '/categories',
@@ -65,7 +73,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/product/:id',
-        element:<Product/>
+        element:<CartContextProvider>
+          <Product /></CartContextProvider>,
       },
       {
         path: '/products',
@@ -99,11 +108,16 @@ const router = createBrowserRouter([
             element:<Orders/>
           },
           {
-            path: '/profile/userInfo',
+            path: '/profile',
             element:<UserInfo/>
           },
         ]
-      }
+      },
+      {
+        path: '*',
+        element: <Notfound />,
+      },
+
     ]
   },
 ]);

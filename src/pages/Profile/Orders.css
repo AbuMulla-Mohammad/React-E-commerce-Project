@@ -1,8 +1,28 @@
-table{
+.userOrders table{
     margin: auto;
 }
-td{
+.userOrders td{
     padding: 10px;
     border: 1px solid black;
     text-align: center;
+}
+.userOrders .cancelBtn{
+    padding: 6px 24px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--secondary-color-2);
+    color: white;
+    border-radius: 6px;
+    transition: all 0.5s;
+}
+.userOrders .cancelBtn:disabled{
+    background-color: #9d7474;
+    cursor: default;
+}
+.userOrders .cancelBtn:hover{
+    background-color: var(--secondary-color-3);
+}
+.userOrders .cancelBtn:disabled:hover{
+    background-color: #9d7474;
 }

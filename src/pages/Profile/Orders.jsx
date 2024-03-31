@@ -20,7 +20,6 @@ export default function Orders() {
       }, {
         signal:controller.signal,
     });
-      console.log(data.orders);
       setOrders(data.orders);
     } catch (error) {
       toast.error(error.response.data.message, {
@@ -38,6 +37,7 @@ export default function Orders() {
       setIsLoading(false);
     }
   }
+
   useEffect(() => {
             getData();
             return () => {
@@ -47,9 +47,37 @@ export default function Orders() {
   if (isLoading) {
     return <Loader/>
   }
+  const handleCancelClick = async(orderId) => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/order/cancel/${orderId}`,null, {
+        headers: {
+          Authorization:`Tariq__${token}`
+        }
+      })
+      getData();
+    } catch (error) {
+      alert(error);
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
+    }
+    finally {
+      setIsLoading(false);
+    }
+    
+  }
   return (
     <>
-      <div className="container">
+      <div className="container userOrders">
       {
         (orders && orders.length > 0) ? <table border={1}><tr>
         <td>order address</td>
@@ -57,7 +85,8 @@ export default function Orders() {
         <td>coupon</td>
         <td>final price</td>
         <td>payment type</td>
-        <td>status</td>
+            <td>status</td>
+            <td></td>
         </tr>
           {
           
@@ -67,8 +96,9 @@ export default function Orders() {
               <td>{order.createdAt}</td>
               <td>{order.couponName==''?'no coupon':order.couponName}</td>
               <td>{order.finalPrice}</td>
-              <td>{order.paymentType}</td>
-              <td>{order.status}</td>
+              <td className='text'>{order.paymentType}</td>
+              <td className={(order.status == 'deliverd') ? "text-success" : (order.status == 'cancelled')?'text-warning':'text-info'}>{order.status}</td>
+              <td><button className='cancelBtn' onClick={()=>handleCancelClick(order._id)} disabled={(order.status == 'deliverd')||(order.status == 'cancelled')}>Cancel order</button></td>
           </tr>
           )
         }</table> : ""

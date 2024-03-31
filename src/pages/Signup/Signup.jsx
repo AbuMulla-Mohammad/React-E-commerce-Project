@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { object, string} from 'yup';
 import PrintErrors from '../../components/PrintErrors';
 import { useNavigate } from 'react-router-dom';
+import { Bounce, Slide, toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 export default function Signup() {
   const navigate = useNavigate();
   const [validationErrors, setValidationErrors] = useState({});
@@ -77,7 +79,33 @@ export default function Signup() {
           
         }
       } catch (error) {
-        alert(error.response.data.message);
+        if(error.message=="Network Error") {
+          alert("server error , Please try again later");
+          toast.error("server error , Please try again later", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              transition: Bounce,
+          });
+      }else if (error.response.data.message!=undefined) {
+          alert(error.response.data.message);
+          toast.error(error.response.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              transition: Bounce,
+          });
+      }
       }
       finally {
         setIsLoading(false);
@@ -106,6 +134,7 @@ export default function Signup() {
         
       </form>
       </div>
+      <ToastContainer/>
     </>
   )
 }

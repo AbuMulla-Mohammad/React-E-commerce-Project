@@ -1,0 +1,40 @@
+.cart table
+{
+    border: none;
+}
+.cart td{
+    padding: 30px 0 !important;
+    border: none !important;
+    /* border-left: 1px solid black !important; */
+    height: 100%;
+}
+.cart tr{
+   
+    /* border: 1px solid black !important; */
+}
+.cart table img{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+.cart table td.details button ,
+.cart table td.quantity button {
+    margin-top: 20px;
+    padding: 8px 48px;
+    border: none;
+    outline:  none;
+    color: white;
+    background-color: var(--secondary-color-2);
+    border-radius: 8px;
+    transition: all 0.5s;
+}
+.cart table td.details button:hover{
+    background-color: var(--secondary-color-3);
+    cursor: pointer;
+}
+.cart table td.quantity button{
+    padding: 4px 8px;
+}
+.cart table td.quantity span{
+    margin: 0 20px;
+}

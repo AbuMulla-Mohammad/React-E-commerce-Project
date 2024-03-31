@@ -72,7 +72,33 @@ export default function Login() {
         }
         catch (error) {
             
-            console.log(error.response.data.message);
+            if(error.message=="Network Error") {
+                alert("server error , Please try again later");
+                toast.error("server error , Please try again later", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+            }else if (error.response.data.message!=undefined) {
+                alert(error.response.data.message);
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+            }
 
         }
         finally {
@@ -86,7 +112,7 @@ export default function Login() {
     
     return (
         <>
-            <div className="formContainer d-flex justify-content-end align-items-center">
+            <div className="formContainer ">
                 <div className="col-xl-5 col-lg-5 col-md-4 col-sm-12 ">
                     
                     <form onSubmit={handleSubmit} className='d-flex col-xl-12 col-lg-12 col-md-12 col-sm-12 '>

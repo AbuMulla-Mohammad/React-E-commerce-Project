@@ -4,6 +4,8 @@ import { object, string} from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
+import { Bounce, Slide, toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ForgotPassword() {
     const navigate = useNavigate();
@@ -64,7 +66,33 @@ export default function ForgotPassword() {
                 alert("The password has been reset successfully");
                 navigate('/login');
             } catch (error) {
-                alert(error);
+                if(error.message=="Network Error") {
+                    alert("server error , Please try again later");
+                    toast.error("server error , Please try again later", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
+                }else if (error.response.data.message!=undefined) {
+                    alert(error.response.data.message);
+                    toast.error(error.response.data.message, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
+                }
             }
             finally {
                 setIsLoading(false);
@@ -76,18 +104,21 @@ export default function ForgotPassword() {
     }
     return (
     <>
-        <form onSubmit={handleSubmit} >
+            <div className="formContainer">
+            <form onSubmit={handleSubmit} className=' col-xl-6 col-lg-6 col-md-12 col-sm-12 '>
                 <label htmlFor="Email">Email</label>
-                <input type="email" name="email" id="Email" value={restData.email} onChange={handleChange} onBlur={validateData}/>
+                <input type="email" name="email" id="Email" placeholder='Email' value={restData.email} onChange={handleChange} onBlur={validateData}/>
                 <PrintErrors errors={validationErrors.email}/>
                 <label htmlFor="NewPassword">New Password</label>
-                <input type="password" name="password" id="NewPassword" value={restData.password} onChange={handleChange} onBlur={validateData}/>
+                <input type="password" name="password" id="NewPassword" placeholder='New Password' value={restData.password} onChange={handleChange} onBlur={validateData}/>
                 <PrintErrors errors={validationErrors.password} />
                 <label htmlFor="Code">Code</label>
-                <input type="text" name="code" id="Code" value={restData.code} onChange={handleChange} onBlur={validateData}/>
+                <input type="text" name="code" id="Code" placeholder='Code' value={restData.code} onChange={handleChange} onBlur={validateData}/>
                 <PrintErrors errors={validationErrors.code} />
                 <input type="submit" value="Reset" disabled={isLoading} />
-        </form>
+            </form>
+            </div>
+            <ToastContainer/>
     </>
     )
 }

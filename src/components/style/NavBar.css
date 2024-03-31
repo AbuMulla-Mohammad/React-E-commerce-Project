@@ -7,12 +7,16 @@ nav .NavLink{
     text-transform: capitalize !important;
     font-weight: 500;
 }
+
 nav .NavLink:hover,
 nav .auth .authNavLink:hover,
 .active{
     padding: 6px 12px !important;
-    background-color: var(--primary-color) !important;
-    color: white !important;
+    background-color: #eee!important;
+    color: var(--primary-color);
+}
+nav .NavLink.icon:hover{
+    background-color: #eee  !important;
 }
 nav .auth .authNavLink{
     transition: all 0.5s;
@@ -33,4 +37,13 @@ nav .auth .authNavLink{
 .logOutBtn:hover{
     background-color: var(--secondary-color-2);
     color: white;
+}
+nav .NavLink span{
+    width: 25px ;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -20%;
+    left: -20%;
 }

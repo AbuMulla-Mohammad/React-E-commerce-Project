@@ -6,7 +6,11 @@
 :root{
   --primary-color:#000;
   --secondary-color-2:#DB4444;
+  --secondary-color-3:#5b2121;
   
+}
+body{
+  font-family: 'Inter',sans-serif;
 }
 .errors{
   color: var(--secondary-color-2);
@@ -14,26 +18,23 @@
   font-weight: 500;
 }
 .formContainer{
-  padding: 0 20px;
-  
-  background-image: url('/public/authImg.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 80vh;
-  width: 100%;
+  padding: 1px 20px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .formContainer form{
-
   border-radius: 12px;
   padding: 30px 10px;
-  backdrop-filter: blur(10px);
-  background-color: #0f74595b;
+  border: 2px solid #ddd;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   
 }
 .formContainer form label{
+  margin-top: 40px;
   font-weight: 500;
   font-size: 20px;
 }
@@ -48,16 +49,45 @@
   background-color: transparent;
 }
 .formContainer form input[type="submit"]{
-  color: var(--secondary-color-2) ;
+  color: white;
   font-weight: 500;
-  border:2px solid var(--secondary-color-2) ;
   padding: 6px 12px;
   border-radius: 12px;
   outline: none;
   cursor: pointer;
   transition: all 0.5s;
+  background-color: var(--secondary-color-2);
 }
 .formContainer form input[type="submit"]:hover{
-  background-color: var(--secondary-color-2);
+  background-color: var(--secondary-color-3);
   color: white;
+}
+.sectionHeader{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+.sectionHeader span{
+  position: relative;
+  color: var(--secondary-color-2);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+}
+.sectionHeader span::before{
+  position: absolute;
+  content: '';
+  background-color: var(--secondary-color-2);
+  width: 20px;
+  height: 40px;
+  left: 0;
+  border-radius: 4px;
+}
+.sectionHeader h2{
+  font-weight: 600;
+  font-size: 36px;
 }
