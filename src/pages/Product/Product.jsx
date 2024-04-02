@@ -39,7 +39,8 @@ export default function Product() {
                     Authorization: `Tariq__${token}`
                 }
             });
-            setNumberOfProducts( numberOfProducts + 1);
+            setNumberOfProducts(20);
+            console.log(numberOfProducts);
             toast.success('Product added Successfully', {
                 position: "top-center",
                 autoClose: 5000,

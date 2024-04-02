@@ -32,8 +32,8 @@ export default function Navbar() {
                     {
                         auth ?
                             <>
-                                <NavLink className=' NavLink icon text-decoration-none text-black position-relative' to='/cart'><span className='position-absolute bg-danger p-1 text-light rounded-circle'>{numberOfProducts}</span><img src="/public/cart.svg" alt="cart icon" /></NavLink>
-                                <NavLink className=' NavLink icon text-decoration-none text-black' to='/profile'><img src="/public/profile.svg" alt="profile icon" /></NavLink>
+                                <NavLink className=' NavLink icon text-decoration-none text-black position-relative' to='/cart'><span className='position-absolute bg-danger p-1 text-light rounded-circle'>{numberOfProducts}</span><img src="/cart.svg" alt="cart icon" /></NavLink>
+                                <NavLink className=' NavLink icon text-decoration-none text-black' to='/profile'><img src="/profile.svg" alt="profile icon" /></NavLink>
                                 <button className='logOutBtn' onClick={handleLogOutClick}>log out</button>
                             </>
                             :
