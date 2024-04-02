@@ -224,7 +224,7 @@ export default function Cart() {
     }
     return (
         <>
-            <div className="cart container">
+            <div className="cart container mt-5 mb-5">
                 {
                     (cart && cart.length > 0) ?
                         <table  className='w-100 text-center'>
@@ -274,12 +274,13 @@ export default function Cart() {
                         </table> : <h2>Cart is empty</h2>
                 }
                 {
-                    (cart && cart.length > 0) && <button onClick={handleClearClick}>Clear cart</button>
+                    (cart && cart.length > 0) && <button className='clearCartBtn' onClick={handleClearClick}>Clear cart</button>
                 }
                 {
-                    (cart && cart.length > 0) && <button onClick={handleCheckOutClick}>check out</button>
+                    (cart && cart.length > 0) && <div className='checkOutDetailes mt-5 p-4 border d-flex flex-column gap-3 align-items-center align-content-center'>
+                        <div >total:{total} $</div><button className='checkOutCartBtn' onClick={handleCheckOutClick}>check out</button>
+                    </div>
                 }
-                <div>total:{total} $</div>
             </div>
             <ToastContainer />
         </>

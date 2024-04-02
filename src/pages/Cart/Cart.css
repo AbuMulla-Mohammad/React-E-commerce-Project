@@ -18,7 +18,9 @@
     object-fit: contain;
 }
 .cart table td.details button ,
-.cart table td.quantity button {
+.cart table td.quantity button,
+.clearCartBtn,
+.checkOutCartBtn {
     margin-top: 20px;
     padding: 8px 48px;
     border: none;
@@ -28,7 +30,9 @@
     border-radius: 8px;
     transition: all 0.5s;
 }
-.cart table td.details button:hover{
+.cart table td.details button:hover,
+.clearCartBtn:hover,
+.checkOutCartBtn:hover {
     background-color: var(--secondary-color-3);
     cursor: pointer;
 }

@@ -119,17 +119,20 @@ export default function Order() {
     }
     console.log(order);
     return (
-    <>
+        <>
+            <div className="container mt-5 mb-5">
             {
                 (retCart&&retCart.length>0)?retCart.map(product =>
-                    <div className="oredrProduct d-flex align-items-center gy-3" key={product._id}>
+                    <div className="oredrProduct d-flex align-items-center gy-3 justify-content-evenly" key={product._id}>
                         
                             <div className="productShortDetails d-flex align-items-center ">
-                                <img width={100} src={product.details.mainImage.secure_url} alt="" />
+                            <img width={100} src={product.details.mainImage.secure_url} alt="" />
                                 <h5>{product.details.name}</h5>
                                 
                             </div>
-                            
+                        <div className="price">
+                        <span>{product.details.price}$</span>
+                            </div>
                             <div className="quantity">
                                 <span>
                                     quantity: {product.quantity}
@@ -137,18 +140,23 @@ export default function Order() {
                             </div>
                     </div>
                     ) :<h2>cart is empty</h2>
-            }
-            <form onSubmit={handleSubmit} >
-                <label htmlFor="Cobon">Cobon</label>
-                <input type="text" name="cobonName" id="Cobon" value={order.cobonName} onChange={handleChange} onBlur={validateData} />
-                <label htmlFor="Address">Address</label>
-                <input type="text" name="address" id="Address" value={order.address} onChange={handleChange} onBlur={validateData}/>
-                <PrintErrors errors={ValidationErrors.address} />
-                <label htmlFor="Phone">Phone number</label>
-                <input type="tel" name="phone" id="Phone" value={order.phone==null?'':order.phone} onChange={handleChange} onBlur={validateData} />
-                <PrintErrors errors={ValidationErrors.phone} />
-                <input type="submit" value="Order" disabled={retCart==undefined} />
-            </form>
+                }
+                <div className="formContainer ">
+                    <div className="col-xl-5 col-lg-5 col-md-4 col-sm-12 ">
+                        <form onSubmit={handleSubmit} >
+                            <label htmlFor="Cobon">Cobon</label>
+                            <input type="text" name="cobonName" id="Cobon" value={order.cobonName} onChange={handleChange} onBlur={validateData} />
+                            <label htmlFor="Address">Address</label>
+                            <input type="text" name="address" id="Address" value={order.address} onChange={handleChange} onBlur={validateData}/>
+                            <PrintErrors errors={ValidationErrors.address} />
+                            <label htmlFor="Phone">Phone number</label>
+                            <input type="tel" name="phone" id="Phone" value={order.phone==null?'':order.phone} onChange={handleChange} onBlur={validateData} />
+                            <PrintErrors errors={ValidationErrors.phone} />
+                            <input type="submit" value="Order" disabled={retCart==undefined} />
+                        </form>
+                    </div>
+                </div>
+        </div>
             <ToastContainer/>
     </>
     )
