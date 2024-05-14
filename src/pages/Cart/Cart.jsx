@@ -9,7 +9,7 @@ import './Cart.css'
 
 export default function Cart() {
     const navigate = useNavigate();
-    const { setRetCart ,numberOfProducts, setNumberOfProducts } = useContext(CartContext);
+    const { setRetCart, numberOfProducts, setNumberOfProducts } = useContext(CartContext);
     const token = localStorage.getItem('userToken');
     const [isLoading, setIsLoading] = useState(false);
     const [cart, setCart] = useState([]);
@@ -27,6 +27,7 @@ export default function Cart() {
                 signal: controller.signal,
             });
             setCart(data.products);
+            console.log("this is cart data", data.products.length)
         } catch (error) {
             setErrors({ error });
         } finally {
@@ -227,7 +228,7 @@ export default function Cart() {
             <div className="cart container mt-5 mb-5">
                 {
                     (cart && cart.length > 0) ?
-                        <table  className='w-100 text-center'>
+                        <table className='w-100 text-center'>
                             <tHead>
                                 <tr className=' fw-lighter '>
                                     <th className='p-2'>Product Image</th>

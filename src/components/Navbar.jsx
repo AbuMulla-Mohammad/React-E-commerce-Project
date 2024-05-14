@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/User'
 import './style/NavBar.css'
@@ -7,23 +7,30 @@ import { CartContext } from '../context/CartCont';
 export default function Navbar() {
     const navigate = useNavigate();
     const { numberOfProducts } = useContext(CartContext);
-    const { auth, setUserToken, setAuth  } = useContext(UserContext);
+    const { auth, setUserToken, setAuth } = useContext(UserContext);
+    const getNumberOfProducts = (numberOfProducts) => {
+        return numberOfProducts;
+    }
+    useEffect(() => {
+        getNumberOfProducts(numberOfProducts)
+    }, [numberOfProducts])
     const handleLogOutClick = () => {
         setUserToken(null);
         setAuth(null);
-        localStorage.removeItem('userToken');
+        // localStorage.removeItem('userToken');
+        localStorage.clear();
         navigate('/login')
     }
     return (
         <>
-            
+
             <nav className=' navbar border border-top-0 border-end-0 border-bottom-2 border-start-0 d-flex align-items-center justify-content-between  py-3 px-2' >
                 <div className="container">
                     <div className="start d-flex gap-5 align-items-center ">
                         <p to='/' className='text-black fw-bold fs-2 text-decoration-none '>Exclusive</p>
                         <NavLink className=' NavLink text-decoration-none text-black' to='/'>Home</NavLink>
                         <NavLink className=' NavLink text-decoration-none text-black' to='/products'>Products</NavLink>
-                        
+
                     </div>
                     <form className="d-flex" role="search">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -48,7 +55,7 @@ export default function Navbar() {
 
                 </div>
             </nav>
-            
+
         </>
     )
 }

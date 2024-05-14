@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartCont'
-import { number, object, string} from 'yup';
+import { number, object, string } from 'yup';
 import PrintErrors from '../../components/PrintErrors';
 import axios from 'axios';
 import Loader from '../../components/Loader';
@@ -17,7 +17,7 @@ export default function Order() {
         cobonName: '',
         address: '',
         phone: null,
-        
+
     });
     const { retCart } = useContext(CartContext);
 
@@ -27,13 +27,13 @@ export default function Order() {
             ...order,
             [name]: value,
         });
-        
+
     }
     const validateData = async (e) => {
         setValidationErrors({});
         const orderSchema = object({
             address: string().required(),
-            phone: number().nullable(false).min(10000000,'number must be at least 8 character').required(),
+            phone: number().nullable(false).min(10000000, 'number must be at least 8 character').required(),
         });
         try {
             await orderSchema.validate(order, { abortEarly: false });
@@ -41,17 +41,15 @@ export default function Order() {
         } catch (errors) {
             const vErrors = {};
             errors.inner.forEach(err => {
-                if (e == undefined || e.target.name == err.path)
-                {
-                    
-                    if (vErrors[err.path] == undefined)
-                    {
+                if (e == undefined || e.target.name == err.path) {
+
+                    if (vErrors[err.path] == undefined) {
                         console.log(err.message)
                         vErrors[err.path] = [err.message];
                     }
                     else {
                         vErrors[err.path].push(err.message);
-                        
+
                     }
                     setValidationErrors(vErrors);
                 }
@@ -61,7 +59,7 @@ export default function Order() {
             return false;
         }
     }
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validat = await validateData();
         if (validat) {
@@ -90,12 +88,13 @@ export default function Order() {
                         theme: "colored",
                         transition: Bounce,
                     });
+                    localStorage.setItem("numberOfProducts", 0)
                     navigate('/profile/userOrders');
                 }
 
             } catch (error) {
-                
-                if (error.response.data.message ) {
+
+                if (error.response.data.message) {
                     alert(error.response.data.message);
                     toast.error(error.response.data.message, {
                         position: "top-center",
@@ -107,7 +106,7 @@ export default function Order() {
                         progress: undefined,
                         theme: "colored",
                         transition: Bounce,
-                        });
+                    });
                 }
             } finally {
                 setIsLoading(false);
@@ -115,31 +114,31 @@ export default function Order() {
         }
     }
     if (isLoading) {
-        return <Loader/>
+        return <Loader />
     }
     console.log(order);
     return (
         <>
             <div className="container mt-5 mb-5">
-            {
-                (retCart&&retCart.length>0)?retCart.map(product =>
-                    <div className="oredrProduct d-flex align-items-center gy-3 justify-content-evenly" key={product._id}>
-                        
+                {
+                    (retCart && retCart.length > 0) ? retCart.map(product =>
+                        <div className="oredrProduct d-flex align-items-center gy-3 justify-content-evenly" key={product._id}>
+
                             <div className="productShortDetails d-flex align-items-center ">
-                            <img width={100} src={product.details.mainImage.secure_url} alt="" />
+                                <img width={100} src={product.details.mainImage.secure_url} alt="" />
                                 <h5>{product.details.name}</h5>
-                                
+
                             </div>
-                        <div className="price">
-                        <span>{product.details.price}$</span>
+                            <div className="price">
+                                <span>{product.details.price}$</span>
                             </div>
                             <div className="quantity">
                                 <span>
                                     quantity: {product.quantity}
                                 </span>
                             </div>
-                    </div>
-                    ) :<h2>cart is empty</h2>
+                        </div>
+                    ) : <h2>cart is empty</h2>
                 }
                 <div className="formContainer ">
                     <div className="col-xl-5 col-lg-5 col-md-4 col-sm-12 ">
@@ -147,17 +146,17 @@ export default function Order() {
                             <label htmlFor="Cobon">Cobon</label>
                             <input type="text" name="cobonName" id="Cobon" value={order.cobonName} onChange={handleChange} onBlur={validateData} />
                             <label htmlFor="Address">Address</label>
-                            <input type="text" name="address" id="Address" value={order.address} onChange={handleChange} onBlur={validateData}/>
+                            <input type="text" name="address" id="Address" value={order.address} onChange={handleChange} onBlur={validateData} />
                             <PrintErrors errors={ValidationErrors.address} />
                             <label htmlFor="Phone">Phone number</label>
-                            <input type="tel" name="phone" id="Phone" value={order.phone==null?'':order.phone} onChange={handleChange} onBlur={validateData} />
+                            <input type="tel" name="phone" id="Phone" value={order.phone == null ? '' : order.phone} onChange={handleChange} onBlur={validateData} />
                             <PrintErrors errors={ValidationErrors.phone} />
-                            <input type="submit" value="Order" disabled={retCart==undefined} />
+                            <input type="submit" value="Order" disabled={retCart == undefined} />
                         </form>
                     </div>
                 </div>
-        </div>
-            <ToastContainer/>
-    </>
+            </div>
+            <ToastContainer />
+        </>
     )
 }
